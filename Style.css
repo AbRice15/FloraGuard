@@ -1,0 +1,687 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #050b0a;
+    --panel: #081513;
+    --panel-light: #0c1d19;
+    --border: #123b31;
+    --green: #28e36f;
+    --green-dark: #0d8f42;
+    --text: #f1f7f4;
+    --muted: #849893;
+    --blue: #22a8ff;
+    --yellow: #ffc928;
+    --orange: #ff8b18;
+    --cyan: #24d9d0;
+    --purple: #8f8cff;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 75% 20%, rgba(0, 130, 70, 0.12), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(0, 100, 60, 0.08), transparent 35%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 180px;
+    height: 100vh;
+    background: linear-gradient(180deg, #071b17, #04100e);
+    border-right: 1px solid var(--border);
+    padding: 22px 14px;
+    z-index: 10;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 35px;
+    border-radius: 20px;
+    background: #06120f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 38px;
+    box-shadow: 0 0 30px rgba(40, 227, 111, 0.12);
+}
+
+.nav-button {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-button span {
+    margin-left: 8px;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    background: rgba(40, 227, 111, 0.1);
+    border-color: rgba(40, 227, 111, 0.2);
+    color: var(--green);
+    box-shadow: 0 0 20px rgba(40, 227, 111, 0.08);
+}
+
+
+/* =========================
+   MAIN DASHBOARD
+========================= */
+
+.dashboard {
+    margin-left: 180px;
+    padding: 28px;
+    max-width: 1800px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-icon {
+    font-size: 45px;
+    filter: drop-shadow(0 0 12px rgba(40, 227, 111, 0.4));
+}
+
+.brand h1 {
+    font-size: 32px;
+    letter-spacing: -1px;
+}
+
+.brand p {
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.connection {
+    border: 1px solid #145335;
+    background: rgba(20, 100, 55, 0.12);
+    padding: 10px 18px;
+    border-radius: 30px;
+    color: var(--green);
+    font-size: 13px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: var(--green);
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 12px var(--green);
+    animation: pulse 1.8s infinite;
+}
+
+.date {
+    color: var(--muted);
+}
+
+
+/* =========================
+   SENSOR CARDS
+========================= */
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.sensor-card {
+    min-height: 145px;
+    background: linear-gradient(145deg, #0b1b18, #06110f);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.sensor-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(40, 227, 111, 0.4);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.sensor-card::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: -35px;
+    top: -35px;
+    background: rgba(40, 227, 111, 0.08);
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+.sensor-title {
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.sensor-value {
+    font-size: 29px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.sensor-change {
+    margin-top: 12px;
+    color: var(--green);
+    font-size: 12px;
+}
+
+.temperature .sensor-value {
+    color: var(--orange);
+}
+
+.humidity .sensor-value {
+    color: var(--blue);
+}
+
+.soil .sensor-value {
+    color: var(--green);
+}
+
+.light .sensor-value {
+    color: var(--yellow);
+}
+
+.fan .status-value {
+    color: var(--green);
+}
+
+.pump .status-value {
+    color: var(--purple);
+}
+
+.status-value {
+    font-size: 30px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.condition {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+
+/* =========================
+   SOIL BAR
+========================= */
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    margin-top: 16px;
+    background: #12231f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 62%;
+    height: 100%;
+    background: linear-gradient(90deg, #0c9e47, #43ef7d);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(40, 227, 111, 0.5);
+    transition: width 1s ease;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+/* =========================
+   PLANT PANEL
+========================= */
+
+.plant-panel {
+    min-height: 420px;
+    background:
+        linear-gradient(rgba(3, 15, 11, 0.72), rgba(3, 13, 10, 0.9)),
+        radial-gradient(circle at center, rgba(30, 130, 60, 0.15), transparent 60%);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: center;
+    padding: 25px;
+}
+
+.plant-info h2 {
+    font-size: 19px;
+}
+
+.plant-info p {
+    color: var(--muted);
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.health {
+    margin-top: 60px;
+}
+
+.health span {
+    display: block;
+    color: var(--green);
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.health strong {
+    display: block;
+    color: var(--green);
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.health small {
+    display: block;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+
+/* =========================
+   SNAKE PLANT
+========================= */
+
+.plant-display {
+    height: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.plant-glow {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px solid rgba(40, 227, 111, 0.35);
+    box-shadow:
+        0 0 30px rgba(40, 227, 111, 0.12),
+        inset 0 0 30px rgba(40, 227, 111, 0.05);
+    animation: rotateGlow 12s linear infinite;
+}
+
+.snake-plant {
+    font-size: 170px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+    animation: plantFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   ENVIRONMENT
+========================= */
+
+.environment {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.environment-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(6, 24, 19, 0.7);
+    border: 1px solid rgba(30, 100, 70, 0.25);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.environment-item > span {
+    font-size: 22px;
+}
+
+.environment-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.environment-item strong {
+    color: var(--green);
+    font-size: 13px;
+}
+
+
+/* =========================
+   RIGHT PANELS
+========================= */
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel {
+    background: linear-gradient(145deg, #0a1a16, #06110e);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.panel h2 {
+    font-size: 17px;
+    margin-bottom: 17px;
+}
+
+.automation-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #123128;
+    background: rgba(4, 16, 13, 0.7);
+    border-radius: 10px;
+    margin-bottom: 9px;
+}
+
+.automation-icon {
+    font-size: 22px;
+}
+
+.automation-item div {
+    flex: 1;
+}
+
+.automation-item strong {
+    display: block;
+}
+
+.automation-item small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.indicator {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.indicator.on {
+    background: rgba(40, 227, 111, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(40, 227, 111, 0.35);
+}
+
+.indicator.off {
+    background: rgba(140, 140, 180, 0.08);
+    color: #aaa;
+    border: 1px solid #29302f;
+}
+
+
+/* =========================
+   SYSTEM STATUS
+========================= */
+
+.system-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 4px;
+    border-bottom: 1px solid #12231f;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.system-row:last-child {
+    border-bottom: none;
+}
+
+.system-row strong {
+    color: var(--green);
+}
+
+
+/* =========================
+   HISTORY GRAPH
+========================= */
+
+.history-panel {
+    margin-top: 15px;
+    padding: 20px;
+    background: linear-gradient(145deg, #0a1a17, #06110e);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-header h2 {
+    font-size: 17px;
+}
+
+.history-header span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.legend {
+    display: flex;
+    gap: 15px;
+}
+
+.legend span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.graph-container {
+    height: 260px;
+    margin-top: 15px;
+}
+
+#historyGraph {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 15px;
+    padding: 15px 20px;
+    background: #06120f;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer strong {
+    color: var(--green);
+}
+
+.footer-right {
+    margin-left: auto;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+}
+
+@keyframes plantFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes rotateGlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1300px) {
+
+    .sensor-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .plant-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .environment {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 75px;
+    }
+
+    .nav-button span {
+        display: none;
+    }
+
+    .dashboard {
+        margin-left: 75px;
+        padding: 18px;
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .sensor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand h1 {
+        font-size: 24px;
+    }
+
+    .date {
+        display: none;
+    }
+
+    .plant-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .plant-display {
+        height: 250px;
+    }
+
+    footer {
+        flex-wrap: wrap;
+    }
+
+    .footer-right {
+        margin-left: 0;
+    }
+}

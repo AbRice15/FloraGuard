@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FloraGuard</title>
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            🌿
+        </div>
+
+        <button class="nav-button active">
+            🏠
+            <span>Dashboard</span>
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN DASHBOARD -->
+    <main class="dashboard">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="brand">
+                <div class="brand-icon">🌿</div>
+
+                <div>
+                    <h1>FloraGuard</h1>
+                    <p>Smart Plant Monitoring System</p>
+                </div>
+            </div>
+
+            <div class="connection">
+                <span class="status-dot"></span>
+                <span>ACTIVE</span>
+            </div>
+
+            <div class="date">
+                FloraGuard
+            </div>
+
+        </header>
+
+
+        <!-- SENSOR CARDS -->
+        <section class="sensor-grid">
+
+            <!-- TEMPERATURE -->
+            <div class="sensor-card temperature">
+                <div class="sensor-title">
+                    🌡️ Temperature
+                </div>
+
+                <div class="sensor-value">
+                    <span id="temperature">31.6</span> °C
+                </div>
+
+                <div class="sensor-change">
+                    ↑ <span id="temperatureChange">1.2</span>°C from last reading
+                </div>
+            </div>
+
+
+            <!-- HUMIDITY -->
+            <div class="sensor-card humidity">
+                <div class="sensor-title">
+                    💧 Humidity
+                </div>
+
+                <div class="sensor-value">
+                    <span id="humidity">46.0</span> %
+                </div>
+
+                <div class="sensor-change">
+                    ↓ <span id="humidityChange">2.4</span>% from last reading
+                </div>
+            </div>
+
+
+            <!-- SOIL MOISTURE -->
+            <div class="sensor-card soil">
+                <div class="sensor-title">
+                    🌱 Soil Moisture
+                </div>
+
+                <div class="sensor-value">
+                    <span id="soilMoisture">62</span> %
+                </div>
+
+                <div class="progress-bar">
+                    <div id="soilBar" class="progress-fill"></div>
+                </div>
+            </div>
+
+
+            <!-- LIGHT -->
+            <div class="sensor-card light">
+                <div class="sensor-title">
+                    ☀️ Light Level
+                </div>
+
+                <div class="sensor-value">
+                    <span id="lightLevel">72</span> %
+                </div>
+
+                <div class="sensor-change">
+                    ↑ <span id="lightChange">3</span>% from last reading
+                </div>
+            </div>
+
+
+            <!-- FAN -->
+            <div class="sensor-card fan">
+                <div class="sensor-title">
+                    🌀 Fan Status
+                </div>
+
+                <div id="fanStatus" class="status-value">
+                    ON
+                </div>
+
+                <div class="condition">
+                    Temperature ≥ 34°C
+                </div>
+            </div>
+
+
+            <!-- PUMP -->
+            <div class="sensor-card pump">
+                <div class="sensor-title">
+                    🚰 Pump Status
+                </div>
+
+                <div id="pumpStatus" class="status-value">
+                    OFF
+                </div>
+
+                <div class="condition">
+                    Soil moisture ≥ 85%
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="main-grid">
+
+
+            <!-- SNAKE PLANT PANEL -->
+            <div class="plant-panel">
+
+                <div class="plant-info">
+
+                    <h2>🌿 SNAKE PLANT</h2>
+
+                    <p>Sansevieria trifasciata</p>
+
+                    <div class="health">
+                        <span>❤️ Plant Health</span>
+                        <strong id="plantHealth">GOOD</strong>
+                        <small>All systems normal.</small>
+                    </div>
+
+                </div>
+
+
+                <!-- PLANT -->
+                <div class="plant-display">
+
+                    <div class="plant-glow"></div>
+
+                    <div class="snake-plant">
+                        🌿
+                    </div>
+
+                </div>
+
+
+                <!-- ENVIRONMENT STATUS -->
+                <div class="environment">
+
+                    <div class="environment-item">
+                        🌿
+                        <div>
+                            <span>Environment</span>
+                            <strong>Stable</strong>
+                        </div>
+                    </div>
+
+                    <div class="environment-item">
+                        💧
+                        <div>
+                            <span>Water Status</span>
+                            <strong id="waterStatus">Adequate</strong>
+                        </div>
+                    </div>
+
+                    <div class="environment-item">
+                        ☀️
+                        <div>
+                            <span>Light Status</span>
+                            <strong>Optimal</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="right-panel">
+
+
+                <!-- AUTOMATION -->
+                <div class="panel">
+
+                    <h2>⚡ Automation</h2>
+
+                    <div class="automation-item">
+
+                        <span class="automation-icon">🌀</span>
+
+                        <div>
+                            <strong>Fan</strong>
+                            <small>Temperature ≥ 34°C</small>
+                        </div>
+
+                        <span id="fanIndicator" class="indicator on">
+                            ON
+                        </span>
+
+                    </div>
+
+
+                    <div class="automation-item">
+
+                        <span class="automation-icon">💧</span>
+
+                        <div>
+                            <strong>Water Pump</strong>
+                            <small>Soil moisture &lt; 85%</small>
+                        </div>
+
+                        <span id="pumpIndicator" class="indicator off">
+                            OFF
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SYSTEM STATUS -->
+                <div class="panel">
+
+                    <h2>🛡️ System Status</h2>
+
+                    <div class="system-row">
+                        <span>🖥️ Arduino</span>
+                        <strong id="arduinoStatus">Active</strong>
+                    </div>
+
+                    <div class="system-row">
+                        <span>📡 Sensor Status</span>
+                        <strong>All OK</strong>
+                    </div>
+
+                    <div class="system-row">
+                        <span>🕒 Last Update</span>
+                        <strong id="lastUpdate">Just now</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LIVE HISTORY -->
+        <section class="history-panel">
+
+            <div class="history-header">
+
+                <div>
+                    <h2>📈 Live History</h2>
+                    <span>Last 20 readings</span>
+                </div>
+
+                <div class="legend">
+                    <span>🌡️ Temperature</span>
+                    <span>💧 Humidity</span>
+                    <span>🌱 Soil</span>
+                    <span>☀️ Light</span>
+                </div>
+
+            </div>
+
+
+            <!-- GRAPH -->
+            <div class="graph-container">
+
+                <canvas id="historyGraph"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <span>🔌 Port: Active</span>
+
+            <span>⚡ Baud: 9600</span>
+
+            <span>
+                🟢 Status:
+                <strong id="connectionStatus">
+                    Simulating Data
+                </strong>
+            </span>
+
+            <span class="footer-right">
+                FloraGuard Dashboard v1.0 🌿
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
