@@ -69,34 +69,34 @@ def read_arduino():
                 # We expect exactly:
                 # Temperature,Humidity,Soil,Light,Fan,Pump
 
-               if len(values) == 6:
+                if len(values) == 6:
 
-    try:
+                    try:
 
-        latest_data = {
-            "temperature": float(values[0]),
-            "humidity": float(values[1]),
-            "soil": int(float(values[2])),
-            "light": int(float(values[3])),
-            "fan": int(values[4]),
-            "pump": int(values[5])
-        }
+                        latest_data = {
+                            "temperature": float(values[0]),
+                            "humidity": float(values[1]),
+                            "soil": int(float(values[2])),
+                            "light": int(float(values[3])),
+                            "fan": int(values[4]),
+                            "pump": int(values[5])
+                        }
 
-        try:
-            response = requests.post(
-                SERVER_URL,
-                json=latest_data,
-                timeout=5
-            )
+                        try:
+                            response = requests.post(
+                                SERVER_URL,
+                                json=latest_data,
+                                timeout=5
+                            )
 
-            print("Render status:", response.status_code)
-            print("Render response:", response.text)
+                            print("Render status:", response.status_code)
+                            print("Render response:", response.text)
 
-        except requests.RequestException as error:
-            print("Could not send data to Render:", error)
+                        except requests.RequestException as error:
+                            print("Could not send data to Render:", error)
 
-    except ValueError:
-        print("Invalid sensor data.")
+                    except ValueError:
+                        print("Invalid sensor data.")
 
         except serial.SerialException:
 
