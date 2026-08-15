@@ -1,6 +1,7 @@
 import serial
 import json
 import time
+import requests
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
@@ -14,6 +15,8 @@ ARDUINO_PORT = "COM3"
 
 # Arduino code uses Serial.begin(9600)
 BAUD_RATE = 9600
+
+SERVER_URL = "https://floraguard-ti4s.onrender.com/data"
 
 # Latest sensor data
 latest_data = {
@@ -66,21 +69,34 @@ def read_arduino():
                 # We expect exactly:
                 # Temperature,Humidity,Soil,Light,Fan,Pump
 
-                if len(values) == 6:
+               if len(values) == 6:
 
-                    try:
+    try:
 
-                        latest_data = {
-                            "temperature": float(values[0]),
-                            "humidity": float(values[1]),
-                            "soil": int(float(values[2])),
-                            "light": int(float(values[3])),
-                            "fan": int(values[4]),
-                            "pump": int(values[5])
-                        }
+        latest_data = {
+            "temperature": float(values[0]),
+            "humidity": float(values[1]),
+            "soil": int(float(values[2])),
+            "light": int(float(values[3])),
+            "fan": int(values[4]),
+            "pump": int(values[5])
+        }
 
-                    except ValueError:
-                        print("Invalid sensor data.")
+        try:
+            response = requests.post(
+                SERVER_URL,
+                json=latest_data,
+                timeout=5
+            )
+
+            print("Render status:", response.status_code)
+            print("Render response:", response.text)
+
+        except requests.RequestException as error:
+            print("Could not send data to Render:", error)
+
+    except ValueError:
+        print("Invalid sensor data.")
 
         except serial.SerialException:
 
